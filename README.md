@@ -65,3 +65,45 @@ ORDER BY total_num_emps DESC;
 
 <br>
 
+<strong>3. Employees and Their Departments</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+	e.emp_no, 
+    CONCAT(first_name, '  ', last_name) AS full_name, 
+    d.dept_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+LIMIT 10;
+```
+</details>
+
+<details>
+  <summary>Click to expand output</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name              | dept_name         |
+|--------|-------------------------|-------------------|
+| 10001  | Georgi  Facello         | Development       |
+| 10002  | Bezalel  Simmel         | Sales             |
+| 10003  | Parto  Bamford          | Production        |
+| 10004  | Chirstian  Koblick      | Development       |
+| 10005  | Kyoichi  Maliniak       | Research          |
+| 10006  | Anneke  Preusig         | Development       |
+| 10007  | Tzvetan  Zielinski      | Sales             |
+| 10008  | Saniya  Kalloufi        | Production        |
+| 10009  | Sumant  Peac            | Development       |
+| 10010  | Duangkaew  Piveteau     | Production        |
+
+*Only first 10 rows shown for readability.*
+
+</details>
+
+<br>
+
+
