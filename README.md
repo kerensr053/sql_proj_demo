@@ -143,5 +143,43 @@ LIMIT 1;
 
 <br>
 
+<strong>5. Average Salary by Department</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+	d.dept_name, 
+    AVG(s.salary) AS avg_salary
+FROM salaries s
+JOIN dept_emp de ON s.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+GROUP BY d.dept_name
+ORDER BY avg_salary DESC;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| department         | avg_salary     |
+|--------------------|----------------|
+| Finance            | 88724.0000     |
+| Marketing          | 84357.7333     |
+| Sales              | 73773.3878     |
+| Quality Management | 72665.5476     |
+| Production         | 61706.2685     |
+| Research           | 59911.5652     |
+| Human Resources    | 59192.5000     |
+| Development        | 58138.6324     |
+| Customer Service   | 49972.0645     |
+
+</details>
+
+<br>
+
 
 
