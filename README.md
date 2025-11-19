@@ -14,13 +14,50 @@ SELECT COUNT(*) AS total_num_emps
 FROM employees;
 ```
 </details>
-<details>
-  <summary>Click to expand expected results!</summary>
 
-#### 📌 Expected Output:
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
 
 | total_num_emps |
 |----------------|
 | 37291          |
+
+</details>
+
+
+<strong>2. Number of employees per department</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    d.dept_name,
+    COUNT(de.emp_no) AS total_num_emps
+FROM departments d
+LEFT JOIN dept_emp de ON d.dept_no = de.dept_no
+GROUP BY d.dept_name
+ORDER BY total_num_emps DESC;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| department         | total_num_emps |
+|--------------------|-----------------|
+| Development        | 32              |
+| Production         | 23              |
+| Sales              | 15              |
+| Research           | 11              |
+| Human Resources    | 9               |
+| Quality Management | 6               |
+| Customer Service   | 6               |
+| Finance            | 4               |
+| Marketing          | 3               |
 
 </details>
