@@ -26,6 +26,7 @@ FROM employees;
 
 </details>
 
+<br>
 
 <strong>2. Number of employees per department</strong>  
 
@@ -61,3 +62,6 @@ ORDER BY total_num_emps DESC;
 | Marketing          | 3               |
 
 </details>
+
+<br>
+
