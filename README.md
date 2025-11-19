@@ -1,4 +1,4 @@
-# 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) 
+# 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) - Made by Keren Susanna Roy
 
 This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. <br><br>
 
@@ -181,21 +181,19 @@ ORDER BY avg_salary DESC;
 
 <br>
 
-<strong>6. Current Highest Paid Employee</strong>  
+<strong>6. Average Salary by Job Title</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    t.title,
+    AVG(s.salary) AS avg_salary
+FROM titles t
+JOIN salaries s ON t.emp_no = s.emp_no
+GROUP BY t.title
+ORDER BY avg_salary DESC;
 ```
 </details>
 
@@ -204,29 +202,32 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| title              | avg_salary |
+|--------------------|------------|
+| Assistant Engineer | 77304.12   |
+| Staff              | 66016.42   |
+| Senior Staff       | 64738.98   |
+| Senior Engineer    | 61319.08   |
+| Engineer           | 59970.73   |
+| Technique Leader   | 58343.21   |
 
 </details>
 
 <br>
 
-<strong>7. Current Highest Paid Employee</strong>  
+<strong>7. Number of Employees per Department</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+	d.dept_name, 
+    COUNT(de.emp_no) AS total_employees
+FROM departments d
+JOIN dept_emp de ON d.dept_no = de.dept_no
+GROUP BY d.dept_name
+ORDER BY total_employees DESC;
 ```
 </details>
 
@@ -235,9 +236,17 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| department         | total_employees |
+|--------------------|------------------|
+| Development        | 32               |
+| Production         | 23               |
+| Sales              | 15               |
+| Research           | 11               |
+| Human Resources    | 9                |
+| Quality Management | 6                |
+| Customer Service   | 6                |
+| Finance            | 4                |
+| Marketing          | 3                |
 
 </details>
 
