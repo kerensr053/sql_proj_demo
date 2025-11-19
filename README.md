@@ -1,6 +1,12 @@
 # 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) 
 
-This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. 
+This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. <br>
+
+<div align="center">
+    
+![image](https://github.com/kerensr053/sql_proj_demo/blob/6c19bac76e1a7adbddb8fee637e56b7b97bc923d/EmployeeDB-ER.jpg)
+
+</div>     
 
 ## SQL Queries 
 
