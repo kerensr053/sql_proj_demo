@@ -4,34 +4,6 @@ This project uses SQL to analyze an employee database and extract meaningful HR 
 
 ## SQL Queries 
 
-<strong>1. Total number of employees<strong>
-
-<details>
-  <summary>Click to expand SQL query!</summary>
-
-  ```sql
-SELECT COUNT(*) AS total_num_emps 
-FROM employees; 
-  ```
-</details>
-
-<details>
-  <summary>Click to expand expected results!</summary>
-
-  ##### Expected Output:
-
-region   |total_num_emp|
----------|-------------|
-Africa   |      5937291|
-Americas |           57|
-Asia     |           50|
-Europe   |           48|
-Oceania  |           26|
-Antartica|            1|
-
-</details>
-</p>
-
 <strong>1. Total Number of Employees</strong>  
 
 <details>
