@@ -16,7 +16,10 @@ FROM employees;
 </details>
 <br />  
 <details>
-  <summary>Click to expand expected results!</summary>   
+  <summary>Click to expand expected results!</summary>
+
+  ##### Expected Results:
+
 region   |country_count|
 ---------|-------------|
 Africa   |           59|
@@ -27,4 +30,5 @@ Oceania  |           26|
 Antartica|            1|
 
 </details>
+</p>
 
