@@ -20,14 +20,9 @@ FROM employees;
 
   ##### Expected Output:
 
-region   |total_num_emp|
+sno      |total_num_emp|
 ---------|-------------|
-Africa   |      5937291|
-Americas |           57|
-Asia     |           50|
-Europe   |           48|
-Oceania  |           26|
-Antartica|            1|
+1.       |      5937291|
 
 </details>
 </p>
