@@ -15,9 +15,10 @@ FROM employees;
   ```
 </details>
 <br />  
-
 <details>
-  <summary>Click to expand expected results!</summary>
-    ![image](screenshots/image1.png)
+  <summary>Click to expand expected results!</summary>   
+|total_num_emps|
+|--------------|
+|         37291|
 </details>
 
