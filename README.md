@@ -18,11 +18,11 @@ FROM employees;
 <details>
   <summary>Click to expand expected results!</summary>
 
-  ##### Expected Results:
+  ##### Expected Output:
 
-region   |country_count|
+region   |total_num_emp|
 ---------|-------------|
-Africa   |           59|
+Africa   |      5937291|
 Americas |           57|
 Asia     |           50|
 Europe   |           48|
