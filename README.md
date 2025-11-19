@@ -14,7 +14,7 @@ SELECT COUNT(*) AS total_num_emps
 FROM employees; 
   ```
 </details>
-<br />  
+
 <details>
   <summary>Click to expand expected results!</summary>
 
@@ -31,4 +31,3 @@ Antartica|            1|
 
 </details>
 </p>
-
