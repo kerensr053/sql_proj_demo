@@ -1,4 +1,5 @@
-# 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) - Made by Keren Susanna Roy
+# 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) 
+### - Made by Keren Susanna Roy
 
 This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. <br><br>
 
