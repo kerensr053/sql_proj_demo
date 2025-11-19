@@ -181,5 +181,622 @@ ORDER BY avg_salary DESC;
 
 <br>
 
+<strong>6. Current Highest Paid Employee</strong>  
 
+<details>
+  <summary>Click to expand answer!</summary>
 
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>7. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>8. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>9. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>10. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>11. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>12. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>13. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>14. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>15. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>16. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>17. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>18. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>19. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>20. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>21. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>22. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>23. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>24. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
+<strong>25. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
