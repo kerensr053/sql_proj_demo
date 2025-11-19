@@ -1,6 +1,6 @@
 # 👥📈 Employee Data Analysis & HR Insights <br> (SQL Project) 
 
-This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. <br>
+This project uses SQL to analyze an employee database and extract meaningful HR insights, including workforce demographics, salary patterns and department performance. The goal is to run basic, intermediate and advanced analytical queries, and generate metrics that support real-world HR decision-making. It demonstrates how SQL can be applied to understand employee trends, improve operations, and drive data-based HR strategies. <br><br>
 
 <div align="center">
     
@@ -93,7 +93,7 @@ LIMIT 10;
 
 #### 📌 Output:
 
-| emp_no | full_name              | dept_name         |
+| emp_no | full_name               | dept_name         |
 |--------|-------------------------|-------------------|
 | 10001  | Georgi  Facello         | Development       |
 | 10002  | Bezalel  Simmel         | Sales             |
@@ -111,5 +111,37 @@ LIMIT 10;
 </details>
 
 <br>
+
+<strong>4. Current Highest Paid Employee</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+    e.emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| emp_no | full_name             | salary |
+|--------|-----------------------|--------|
+| 10017  | Cristinel Bouloucos   | 99651  |
+
+</details>
+
+<br>
+
 
 
