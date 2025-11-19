@@ -20,9 +20,35 @@ FROM employees;
 
   ##### Expected Output:
 
-sno      |total_num_emp|
+region   |total_num_emp|
 ---------|-------------|
-1.       |      5937291|
+Africa   |      5937291|
+Americas |           57|
+Asia     |           50|
+Europe   |           48|
+Oceania  |           26|
+Antartica|            1|
 
 </details>
 </p>
+
+<strong>1. Total Number of Employees</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT COUNT(*) AS total_num_emps
+FROM employees;
+```
+</details>
+<details>
+  <summary>Click to expand expected results!</summary>
+
+#### 📌 Expected Output:
+
+| total_num_emps |
+|----------------|
+| 37291          |
+
+</details>
