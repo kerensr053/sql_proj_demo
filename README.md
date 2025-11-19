@@ -17,8 +17,14 @@ FROM employees;
 <br />  
 <details>
   <summary>Click to expand expected results!</summary>   
-|total_num_emps|
-|--------------|
-|         37291|
+region   |country_count|
+---------|-------------|
+Africa   |           59|
+Americas |           57|
+Asia     |           50|
+Europe   |           48|
+Oceania  |           26|
+Antartica|            1|
+
 </details>
 
