@@ -253,21 +253,25 @@ GROUP BY gender;
 
 <br>
 
-<strong>8. Current Highest Paid Employee</strong>  
+<strong>8. Current Number of Employees Under Each Manager</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    dm.emp_no AS manager_emp_no,
+    CONCAT(m.first_name, ' ', m.last_name) AS manager_name,
+    d.dept_name,
+    COUNT(de.emp_no) AS num_emps
+FROM dept_manager dm
+JOIN employees m ON dm.emp_no = m.emp_no
+JOIN departments d ON dm.dept_no = d.dept_no
+JOIN dept_emp de ON dm.dept_no = de.dept_no
+WHERE dm.to_date = '9999-01-01'
+  AND de.to_date = '9999-01-01'
+GROUP BY dm.emp_no, manager_name, d.dept_name
+ORDER BY num_emps DESC;
 ```
 </details>
 
@@ -276,29 +280,32 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| manager_emp_no | manager_name             | dept_name         | num_emps |
+|----------------|--------------------------|-------------------|----------|
+| 10567          | Diethrich Journel        | Development       | 22       |
+| 10420          | Kaijung Riesenhuber      | Production        | 20       |
+| 11133          | Nalini Azulay            | Sales             | 11       |
+| 10228          | Karoline Cesareni        | Human Resources   | 9        |
+| 11534          | Surveyors Besancenot     | Research          | 7        |
+| 10854          | Jagoda Nannarelli        | Quality Management| 4        |
+| 11939          | Chinhyun Basart          | Customer Service  | 4        |
+| 10039          | Alejandro Brender        | Marketing         | 2        |
+| 10114          | Munir Demeyer            | Finance           | 1        |
 
 </details>
 
 <br>
 
-<strong>9. Current Highest Paid Employee</strong>  
+<strong>9. Five Most Recent Hires</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
-SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+SELECT *
+FROM employees 
+ORDER BY hire_date DESC
+LIMIT 5; 
 ```
 </details>
 
@@ -307,15 +314,19 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
+|--------|-------------|------------|-----------|--------|------------|
+| 47291  | 1960-09-09  | Ulf        | Flexer    | M      | 2000-01-12 |
+| 13246  | 1952-06-09  | Adil       | Siepmann  | F      | 1999-12-31 |
+| 13919  | 1952-04-22  | Brewster   | Sinicrope | M      | 1999-12-04 |
+| 28500  | 1954-04-28  | Fumiko     | Zwicker   | M      | 1999-11-23 |
+| 17789  | 1956-03-16  | Snehasis   | Gilg      | F      | 1999-11-14 |
 
 </details>
 
 <br>
 
-<strong>10. Current Highest Paid Employee</strong>  
+<strong>10. Top 3 Highest Salaries With Department</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
@@ -324,12 +335,16 @@ LIMIT 1;
 SELECT 
     e.emp_no,
     CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
+    s.salary,
+    d.dept_name
+FROM salaries s
+JOIN employees e ON s.emp_no = e.emp_no
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
 WHERE s.to_date = '9999-01-01'
+  AND de.to_date = '9999-01-01'
 ORDER BY s.salary DESC
-LIMIT 1;
+LIMIT 3;
 ```
 </details>
 
@@ -338,9 +353,11 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no | full_name            | salary | dept_name        |
+|--------|----------------------|--------|------------------|
+| 10017  | Cristinel Bouloucos  | 99651  | Marketing        |
+| 10050  | Yinghua Dredge       | 97830  | Sales            |
+| 10022  | Suzette Pettey       | 96646  | Production       |
 
 </details>
 
