@@ -363,21 +363,26 @@ LIMIT 3;
 
 <br>
 
-<strong>11. Current Highest Paid Employee</strong>  
+<strong>11. Engineers working for more than 5 years and earning less than 40k</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
-SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+SELECT DISTINCT
+    e.emp_no, 
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name, 
+    d.dept_name, 
+    t.title,
     s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+FROM employees e 
+JOIN salaries s ON s.emp_no = e.emp_no 
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON d.dept_no = de.dept_no
+JOIN titles t ON e.emp_no = t.emp_no
+WHERE t.title LIKE '%Engineer%'
+  AND e.hire_date <= DATE_SUB(CURDATE(), INTERVAL 5 YEAR)
+  AND s.salary < 40000;
 ```
 </details>
 
@@ -386,9 +391,14 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no | full_name        | dept_name   | title          | salary |
+|--------|------------------|-------------|----------------|--------|
+| 10022  | Shahaf Famili    | Development | Engineer       | 39335  |
+| 10027  | Divier Reistad   | Development | Engineer       | 39520  |
+| 10027  | Divier Reistad   | Development | Senior Engineer| 39520  |
+| 10037  | Pradeep Makrucki | Development | Engineer       | 39765  |
+| 10037  | Pradeep Makrucki | Development | Senior Engineer| 39765  |
+| 10048  | Florian Syrotiuk | Development | Engineer       | 39507  |
 
 </details>
 
@@ -797,21 +807,31 @@ LIMIT 1;
 
 <br>
 
-<strong>25. Current Highest Paid Employee</strong>  
+<strong>25. Managers earning salaries higher than the company's overall average salary</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    d.dept_no,
+    d.dept_name,
+    dm.emp_no AS manager_emp_no,
+    CONCAT(e.first_name, ' ', e.last_name) AS manager_name,
+    s.salary AS manager_salary,
+    comp.avg_salary AS company_avg_salary
+FROM departments d
+JOIN dept_manager dm ON dm.dept_no = d.dept_no
+JOIN employees e ON e.emp_no = dm.emp_no
+JOIN salaries s ON s.emp_no = dm.emp_no
+JOIN (
+        SELECT AVG(salary) AS avg_salary
+        FROM salaries
+     ) comp
+WHERE dm.to_date = '9999-01-01' -- current managers
+  AND s.to_date = '9999-01-01' -- current salary 
+  AND s.salary > comp.avg_salary
+ORDER BY d.dept_no DESC;
 ```
 </details>
 
@@ -820,9 +840,9 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| dept_no | dept_name | manager_emp_no | manager_name      | manager_salary | company_avg_salary |
+| ------- | --------- | -------------- | ----------------- | -------------- | ------------------ |
+| d001    | Marketing | 10039          | Alejandro Brender | 63918          | 61743.6612         |
 
 </details>
 
