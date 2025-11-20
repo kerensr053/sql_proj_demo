@@ -745,21 +745,22 @@ LIMIT 1;
 
 <br>
 
-<strong>23. Current Highest Paid Employee</strong>  
+<strong>23. Employee(s) who have been with the company the longest.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    emp_no,
+    CONCAT(first_name, '  ', last_name) AS full_name,
+    hire_date,
+    TIMESTAMPDIFF(YEAR, hire_date, CURDATE()) AS years_worked
+FROM employees
+WHERE hire_date = (
+    SELECT MIN(hire_date)
+    FROM employees
+);
 ```
 </details>
 
@@ -768,29 +769,33 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no |   full_name   | hire_date  | years_worked |
+| ------ | ------------- | ---------- | ------------ | 
+| 20539  | Poorav Gecsei | 1985-02-01 | 40           |
 
 </details>
 
 <br>
 
-<strong>24. Current Highest Paid Employee</strong>  
+<strong>24. The department that has the highest number of employees earning more than 50,000.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    d.dept_no,
+    d.dept_name
+FROM departments d
+WHERE d.dept_no = (
+    SELECT de.dept_no
+    FROM dept_emp de
+    JOIN salaries s ON de.emp_no = s.emp_no
+    WHERE s.salary > 50000
+    GROUP BY de.dept_no
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
 ```
 </details>
 
@@ -799,9 +804,9 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| dept_no | dept_name    |
+|---------|--------------|
+| d005    | Development  |
 
 </details>
 
