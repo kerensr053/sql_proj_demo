@@ -627,15 +627,7 @@ LIMIT 1;
   <summary>Click to expand answer!</summary>
 
 ```sql
-SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+
 ```
 </details>
 
@@ -652,7 +644,7 @@ LIMIT 1;
 
 <br>
 
-<strong>20. Current Highest Paid Employee</strong>  
+<strong>20. Employees who earn the highest salary in their respective departments.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
@@ -661,12 +653,20 @@ LIMIT 1;
 SELECT 
     e.emp_no,
     CONCAT(e.first_name, ' ', e.last_name) AS full_name,
+    d.dept_no,
+    d.dept_name,
     s.salary
 FROM employees e
 JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON d.dept_no = de.dept_no
+WHERE s.salary = (
+        SELECT MAX(s2.salary)
+        FROM salaries s2
+        JOIN dept_emp de2 ON s2.emp_no = de2.emp_no
+        WHERE de2.dept_no = de.dept_no
+	)
+ORDER BY s.salary DESC;
 ```
 </details>
 
@@ -675,9 +675,17 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no | full_name           | dept_no | dept_name          | salary |
+|--------|---------------------|---------|--------------------|--------|
+| 10017  | Cristinel Bouloucos | d001    | Marketing          | 99651  |
+| 10050  | Yinghua Dredge      | d002    | Finance            | 97830  |
+| 10050  | Yinghua Dredge      | d007    | Sales              | 97830  |
+| 10024  | Suzette Pettey      | d004    | Production         | 96646  |
+| 10005  | Kyoichi Maliniak    | d003    | Human Resources    | 94692  |
+| 10006  | Sumant Peac         | d006    | Quality Management | 94443  |
+| 10001  | Georgi Facello      | d005    | Development        | 88958  |
+| 10007  | Tzvetan Zielinski   | d008    | Research           | 88070  |
+| 10038  | Huan Lortz          | d009    | Customer Service   | 64254  |
 
 </details>
 
