@@ -683,21 +683,29 @@ LIMIT 1;
 
 <br>
 
-<strong>21. Current Highest Paid Employee</strong>  
+<strong>21. Departments where the average salary is greater than the overall average salary across all departments.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    d.dept_no,
+    d.dept_name,
+    AVG(s.salary) AS dept_avg_salary,
+    comp.company_avg_salary
+FROM departments d
+JOIN dept_emp de ON d.dept_no = de.dept_no
+JOIN salaries s ON de.emp_no = s.emp_no
+JOIN (
+        SELECT AVG(s2.salary) AS company_avg_salary
+        FROM salaries s2
+     ) AS comp
+GROUP BY 
+    d.dept_no, 
+    d.dept_name
+HAVING dept_avg_salary > comp.company_avg_salary
+ORDER BY dept_avg_salary DESC;
 ```
 </details>
 
@@ -706,28 +714,33 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| dept_no | dept_name           | dept_avg_salary  | company_avg_salary  |
+|---------|---------------------|------------------|---------------------|
+| d002    | Finance             | 88724.0000       | 61743.6612          |
+| d001    | Marketing           | 84357.7333       | 61743.6612          |
+| d007    | Sales               | 73773.3878       | 61743.6612          |
+| d006    | Quality Management  | 72665.5476       | 61743.6612          |
 
 </details>
 
 <br>
 
-<strong>22. Current Highest Paid Employee</strong>  
+<strong>22. Department with the highest average salary.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
+    d.dept_no, 
+    d.dept_name
+FROM departments d
+JOIN dept_emp de ON d.dept_no = de.dept_no
+JOIN salaries s ON de.emp_no = s.emp_no
+GROUP BY 
+    d.dept_no, 
+    d.dept_name
+ORDER BY AVG(s.salary) DESC
 LIMIT 1;
 ```
 </details>
@@ -737,9 +750,9 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| dept_no | dept_name    |
+|---------|--------------|
+| d002    | Finance      |
 
 </details>
 
