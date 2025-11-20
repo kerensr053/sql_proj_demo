@@ -435,7 +435,7 @@ LIMIT 1;
 
 <br>
 
-<strong>13. Current Highest Paid Employee</strong>  
+<strong>13. Identify employees whose job titles start with the word "Senior".</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
@@ -466,21 +466,19 @@ LIMIT 1;
 
 <br>
 
-<strong>14. Current Highest Paid Employee</strong>  
+<strong>14. Total number of employees hired in each year.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
+
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    year(hire_date) as hire_year, 
+    COUNT(emp_no) as total_emps
+FROM employees 
+GROUP BY hire_year
+ORDER BY total_emps DESC;
 ```
 </details>
 
@@ -489,29 +487,42 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| hire_year | total_emps |
+|-----------|------------|
+| 1985      | 4396       |
+| 1986      | 4368       |
+| 1987      | 4115       |
+| 1988      | 3984       |
+| 1989      | 3448       |
+| 1990      | 3225       |
+| 1991      | 2815       |
+| 1992      | 2568       |
+| 1993      | 2265       |
+| 1994      | 1943       |
+| 1995      | 1515       |
+| 1996      | 1199       |
+| 1997      | 764        |
+| 1998      | 498        |
+| 1999      | 187        |
+| 2000      | 1          |
 
 </details>
 
 <br>
 
-<strong>15. Current Highest Paid Employee</strong>  
+<strong>15. Average salary for each job title in the company.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+    t.title, 
+    AVG(s.salary) as avg_salary 
+FROM titles t
+JOIN salaries s
+ON s.emp_no = t.emp_no 
+GROUP BY title;
 ```
 </details>
 
@@ -520,9 +531,14 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| title              | avg_salary   |
+|--------------------|--------------|
+| Assistant Engineer | 77304.1154   |
+| Staff              | 66016.4182   |
+| Senior Staff       | 64738.9767   |
+| Senior Engineer    | 61319.0794   |
+| Engineer           | 59970.7276   |
+| Technique Leader   | 58343.2143   |
 
 </details>
 
@@ -535,13 +551,16 @@ LIMIT 1;
 
 ```sql
 SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
+    e.first_name,
+    e.last_name,
+    COUNT(t.title) AS title_changes
 FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
+JOIN titles t ON e.emp_no = t.emp_no
+GROUP BY 
+    e.emp_no, 
+    e.first_name, 
+    e.last_name
+ORDER BY title_changes DESC
 LIMIT 1;
 ```
 </details>
@@ -551,15 +570,90 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| first_name | last_name | title_changes  |
+|------------|-----------|----------------|
+| Sumant     | Peac      | 3              |
 
 </details>
 
 <br>
 
-<strong>17. Current Highest Paid Employee</strong>  
+<strong>17. Employee who has undergone the most number of salary changes in the company.</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+
+SELECT 
+    e.first_name, 
+    e.last_name, 
+    COUNT(s.salary) AS salary_changes
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+GROUP BY 
+    e.emp_no, 
+    e.first_name, 
+    e.last_name
+ORDER BY salary_changes DESC
+LIMIT 1;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| first_name | last_name | salary_changes |
+|------------|-----------|----------------|
+| Sumant     | Peac      | 18             |
+
+</details>
+
+<br>
+
+<strong>18. Calculate the total salary expenditure for each department within a specific period (from January 1, 1990, to December 31, 2000).</strong>  
+
+<details>
+  <summary>Click to expand answer!</summary>
+
+```sql
+SELECT 
+	d.dept_no,
+    d.dept_name,
+    SUM(s.salary) AS total_salary
+FROM dept_emp de
+JOIN departments d ON de.dept_no = d.dept_no
+JOIN salaries s ON de.emp_no = s.emp_no
+WHERE s.from_date >= '1990-01-01' 
+AND  s.to_date <= '2000-12-31'
+GROUP BY d.dept_name;
+```
+</details>
+
+<details>
+  <summary>Click to expand results!</summary>
+
+#### 📌 Output:
+
+| dept_no | dept_name           | total_salary |
+|---------|---------------------|--------------|
+| d005    | Development         | 7566943      |
+| d004    | Production          | 6113439      |
+| d007    | Sales               | 2667998      |
+| d003    | Human Resources     | 2572902      |
+| d006    | Quality Management  | 1968008      |
+| d002    | Finance             | 1578833      |
+| d009    | Customer Service    | 1234808      |
+| d001    | Marketing           | 918284       |
+| d008    | Research            | 1719342      |
+
+</details>
+
+<br>
+
+<strong>19. Employees who have changed their title within the same department.</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
@@ -568,12 +662,21 @@ LIMIT 1;
 SELECT 
     e.emp_no,
     CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
+    d.dept_no,
+    d.dept_name,
+    count(DISTINCT t.title) as title_count
 FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
+JOIN titles t ON e.emp_no = t.emp_no
+JOIN dept_emp de ON de.emp_no = e.emp_no
+JOIN departments d ON d.dept_no = de.dept_no
+GROUP BY 
+    e.emp_no, 
+    e.first_name,
+    e.last_name, 
+    d.dept_name
+HAVING title_count > 1
+ORDER BY title_count DESC
+LIMIT 5;
 ```
 </details>
 
@@ -582,63 +685,13 @@ LIMIT 1;
 
 #### 📌 Output:
 
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
-
-</details>
-
-<br>
-
-<strong>18. Current Highest Paid Employee</strong>  
-
-<details>
-  <summary>Click to expand answer!</summary>
-
-```sql
-SELECT 
-    e.emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS full_name,
-    s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01'
-ORDER BY s.salary DESC
-LIMIT 1;
-```
-</details>
-
-<details>
-  <summary>Click to expand results!</summary>
-
-#### 📌 Output:
-
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
-
-</details>
-
-<br>
-
-<strong>19. Current Highest Paid Employee</strong>  
-
-<details>
-  <summary>Click to expand answer!</summary>
-
-```sql
-
-```
-</details>
-
-<details>
-  <summary>Click to expand results!</summary>
-
-#### 📌 Output:
-
-| emp_no | full_name             | salary |
-|--------|-----------------------|--------|
-| 10017  | Cristinel Bouloucos   | 99651  |
+| emp_no | full_name          | dept_no | dept_name           | title_count |
+|--------|--------------------|---------|---------------------|-------------|
+| 10009  | Sumant Peac        | d006    | Quality Management  | 3           |
+| 10066  | Kwee Schusler      | d005    | Development         | 3           |
+| 10005  | Kyoichi Maliniak   | d003    | Human Resources     | 2           |
+| 10007  | Tzvetan Zielinski  | d008    | Research            | 2           |
+| 10012  | Patricio Bridgland | d005    | Development         | 2           |
 
 </details>
 
