@@ -143,18 +143,21 @@ LIMIT 1;
 
 <br>
 
-<strong>5. Average Salary by Department</strong>  
+<strong>5. Average salary, maximum salary and their difference for each department for the current employees</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
-SELECT 
-	d.dept_name, 
-    AVG(s.salary) AS avg_salary
+SELECT
+    d.dept_name,
+    AVG(s.salary) AS avg_salary,
+    MAX(s.salary) AS max_salary,
+    (MAX(s.salary) - AVG(s.salary)) AS difference
 FROM salaries s
 JOIN dept_emp de ON s.emp_no = de.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
+JOIN departments d ON d.dept_no = de.dept_no
+WHERE s.to_date = '9999-01-01'
 GROUP BY d.dept_name
 ORDER BY avg_salary DESC;
 ```
@@ -165,23 +168,23 @@ ORDER BY avg_salary DESC;
 
 #### 📌 Output:
 
-| department         | avg_salary     |
-|--------------------|----------------|
-| Finance            | 88724.0000     |
-| Marketing          | 84357.7333     |
-| Sales              | 73773.3878     |
-| Quality Management | 72665.5476     |
-| Production         | 61706.2685     |
-| Research           | 59911.5652     |
-| Human Resources    | 59192.5000     |
-| Development        | 58138.6324     |
-| Customer Service   | 49972.0645     |
+| department         | avg_salary  | max_salary | difference |
+|--------------------|-------------|------------|------------|
+| Marketing          | 99651.0000  | 99651      | 0.0000     |
+| Finance            | 97830.0000  | 97830      | 0.0000     |
+| Quality Management | 84170.0000  | 94409      | 10239.0000 |
+| Sales              | 81695.0000  | 97830      | 16135.0000 |
+| Production         | 69399.0000  | 96646      | 27247.0000 |
+| Human Resources    | 63894.0000  | 94692      | 25798.0000 |
+| Research           | 68800.0000  | 88070      | 20041.0000 |
+| Development        | 64027.5000  | 88070      | 24042.5000 |
+| Customer Service   | 57790.0000  | 64254      | 6464.0000  |
 
 </details>
 
 <br>
 
-<strong>6. Average Salary by Job Title</strong>  
+<strong>6. Average salary, maximum salary and their difference for each job title for the current employees</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
@@ -189,9 +192,12 @@ ORDER BY avg_salary DESC;
 ```sql
 SELECT 
     t.title,
-    AVG(s.salary) AS avg_salary
+    AVG(s.salary) AS avg_salary,
+    MAX(s.salary) AS max_salary,
+    (MAX(s.salary) - AVG(s.salary)) AS difference
 FROM titles t
 JOIN salaries s ON t.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
 GROUP BY t.title
 ORDER BY avg_salary DESC;
 ```
@@ -202,32 +208,34 @@ ORDER BY avg_salary DESC;
 
 #### 📌 Output:
 
-| title              | avg_salary |
-|--------------------|------------|
-| Assistant Engineer | 77304.12   |
-| Staff              | 66016.42   |
-| Senior Staff       | 64738.98   |
-| Senior Engineer    | 61319.08   |
-| Engineer           | 59970.73   |
-| Technique Leader   | 58343.21   |
+| title              | avg_salary   | max_salary | difference   |
+|--------------------|--------------|------------|--------------|
+| Assistant Engineer | 95527.5000   | 96646      | 1118.5000    |
+| Senior Staff       | 73939.8571   | 99651      | 25711.1429   |
+| Staff              | 73230.0000   | 99651      | 26421.0000   |
+| Senior Engineer    | 70154.0476   | 94409      | 24254.9524   |
+| Engineer           | 67008.0000   | 94409      | 27401.0000   |
+| Technique Leader   | 58345.0000   | 58345      | 0.0000       |
 
 </details>
 
 <br>
 
-<strong>7. Number of Employees per Department</strong>  
+<strong>7. Average salary, maximum salary and their difference for each gender for the current employees</strong>  
 
 <details>
   <summary>Click to expand answer!</summary>
 
 ```sql
 SELECT 
-	d.dept_name, 
-    COUNT(de.emp_no) AS total_employees
-FROM departments d
-JOIN dept_emp de ON d.dept_no = de.dept_no
-GROUP BY d.dept_name
-ORDER BY total_employees DESC;
+    gender,
+    AVG(s.salary) AS avg_salary,
+    MAX(s.salary) AS max_salary,
+    (MAX(s.salary) - AVG(s.salary)) AS difference
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'   -- current salaries only
+GROUP BY gender; 
 ```
 </details>
 
@@ -236,17 +244,10 @@ ORDER BY total_employees DESC;
 
 #### 📌 Output:
 
-| department         | total_employees |
-|--------------------|------------------|
-| Development        | 32               |
-| Production         | 23               |
-| Sales              | 15               |
-| Research           | 11               |
-| Human Resources    | 9                |
-| Quality Management | 6                |
-| Customer Service   | 6                |
-| Finance            | 4                |
-| Marketing          | 3                |
+| gender | avg_salary   | max_salary | difference   |
+|--------|--------------|------------|--------------|
+| F      | 73730.8889   | 99651      | 25920.1111   |
+| M      | 66560.8214   | 97830      | 31269.1786   |
 
 </details>
 
