@@ -886,8 +886,8 @@ WHERE d.dept_no = (
 
 <br>
 
-<strong>25. Managers earning salaries higher than the company's overall average salary</strong>  
-
+<strong>25. Company Average</strong>  
+The departments that have had managers earning salaries higher than the company's overall average salary.
 <details>
   <summary>Click to expand answer!</summary>
 
