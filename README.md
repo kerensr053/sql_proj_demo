@@ -697,8 +697,8 @@ LIMIT 5;
 
 <br>
 
-<strong>20. Employees who earn the highest salary in their respective departments.</strong>  
-
+<strong>20. Salary Subquery</strong>  
+Employees who earn the highest salary in their respective departments along with their salaries.
 <details>
   <summary>Click to expand answer!</summary>
 
@@ -744,8 +744,8 @@ ORDER BY s.salary DESC;
 
 <br>
 
-<strong>21. Departments where the average salary is greater than the overall average salary across all departments.</strong>  
-
+<strong>21. Department Salary Subquery</strong>  
+Departments where the average salary is greater than the overall average salary across all departments.
 <details>
   <summary>Click to expand answer!</summary>
 
@@ -786,8 +786,8 @@ ORDER BY dept_avg_salary DESC;
 
 <br>
 
-<strong>22. Department with the highest average salary.</strong>  
-
+<strong>22. Average Salary Subquery</strong>  
+Department with the highest average salary.
 <details>
   <summary>Click to expand answer!</summary>
 
@@ -819,8 +819,8 @@ LIMIT 1;
 
 <br>
 
-<strong>23. Employee(s) who have been with the company the longest.</strong>  
-
+<strong>23. Longest Time Subquery</strong>  
+Employee(s) who have been with the company the longest.
 <details>
   <summary>Click to expand answer!</summary>
 
@@ -851,8 +851,8 @@ WHERE hire_date = (
 
 <br>
 
-<strong>24. The department that has the highest number of employees earning more than 50,000.</strong>  
-
+<strong>24. Salary Threshold</strong>  
+The department that has the highest number of employees earning more than a specified salary threshold (e.g., salary > 50,000).
 <details>
   <summary>Click to expand answer!</summary>
 
